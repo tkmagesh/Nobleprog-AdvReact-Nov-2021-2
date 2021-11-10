@@ -11,7 +11,7 @@
     <script src="babel.min.js"></script>
     <!-- 
         01. initial implementation
-
+        02. remove the dependency on the store in the component
 
      -->
     <script type="text/babel">
@@ -26,7 +26,7 @@
         /* store.subscribe(() => console.log('current state = ', store.getState())) */
         
         
-        const Spinner = ({store}) => {
+        const Spinner = ({spinnerValue, dispatch}) => {
 
             //creating actions
             const inc_action = { type: 'INCREMENT' },
@@ -34,15 +34,12 @@
 
             //dispatching actions
             const onDecrementClick = () => {
-                store.dispatch(dec_action)
+                dispatch(dec_action)
             };
 
             const onIncrementClick = () => {
-                store.dispatch(inc_action)
+                dispatch(inc_action)
             };
-
-            //extracting state from the store for presentation
-            const spinnerValue = store.getState();
 
             return (
                 <div>
@@ -56,8 +53,9 @@
         }
 
         function renderSpinner(){
+            const spinnerValue = store.getState();
             ReactDOM.render(
-                <Spinner store={store}/>, 
+                <Spinner spinnerValue={spinnerValue} dispatch={store.dispatch}/>, 
                 document.getElementById('root')
             )
         }

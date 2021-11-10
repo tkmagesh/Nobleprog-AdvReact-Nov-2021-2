@@ -24,13 +24,11 @@
             const productItems = productNames.map((productName, index) => {
                 return <li key={index}>{productName}</li>;
             });
-            
+
             return (
                 <div>
                     <h1>Products</h1>
-                    <div>
-                        Products Count : {productNames.length}
-                    </div>
+                   
                     <label>Product Name :</label>
                     <input type="text" onChange={onTxtProductNameChange} />
                     <button onClick={onBtnAddProductClick}>Add Product</button>
@@ -42,7 +40,12 @@
         }
 
         ReactDOM.render(
-            <Products />,
+            <div>
+                <div>
+                    Products Count : 0
+                </div>
+                <Products />
+            </div>,
             document.getElementById('root')
         )
     </script>
@@ -53,3 +56,10 @@
     </div>
 </body>
 </html>
+
+<!-- 
+    Requirement:
+        Display the products count OUTSIDE the products component
+
+
+ -->

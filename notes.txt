@@ -1,0 +1,30 @@
+Schedule
+    Commence    : 9:00 AM
+    Tea Break   : 10:30 AM (20 mins)
+    Lunch Break : 12:30 PM (45 mins)
+    Tea Break   : 3:00 PM (20 mins)
+    Windup      : 5:00 PM
+
+Methodology:
+    No powerpoint presentation
+    Atleast 50% of the class should have completed the assignment to move forward
+
+Prerequisites:
+    Proficient in JavaScript
+    Proficient in React
+
+Repository:
+    http://github.com/tkmagesh/Nobleprog-AdvReact-Nov-2021-2
+
+About You:
+    Name
+    Total Experience
+    Primary skillset
+    Experience in Redux (if any)
+ 
+React
+    Library for creating UI
+    Composition of components
+    component = encapsulation of Presentation + UI Behavior + State
+    Responsibility of a component is to synchronize the state changes in the UI
+

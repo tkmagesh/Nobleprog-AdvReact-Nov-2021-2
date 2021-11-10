@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Tracker</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script src="redux.js"></script>
+    <style>
+        body{
+            margin : 50px
+        }
+        section{
+            margin-bottom: 10px;
+        }
+        .stats, .bugname {
+            font-size: 18pt;
+        }
+        .closed{
+            text-decoration: line-through;
+            color : red;
+            font-style: italic;
+        }
+        .bugname{
+            cursor : pointer;
+        }
+        ol{
+            list-style : none;
+            width : 500px;
+            -webkit-padding-start: 0px;
+        }
+        li{
+            margin-bottom : 10px;
+            padding : 10px;
+            border-radius: 5px;
+            border : 1px solid gray;
+            background-color: #e7e7e7;
+        }
+        .datetime{
+            font-style : italic;
+        }
+
+    </style>
+    <!-- 
+        Use Cases:
+        (done) 1. Add bugs
+        (done) 2. List the added bugs
+        (done) 3. Toggle the 'closed' status of any bug
+        (done) 4. Remove any bug
+        (done) 5. Remove 'closed' bugs
+        (done) 6. Display stats (# of closed bugs / total # of bugs)
+        7. Sort the bugs (assignment)
+        8. Persist the bugs in the server
+        9. Associate the bugs with a 'project'
+     -->
+
+     <script type="text/babel">
+
+        function bugsReducer(currentState = [], action){
+            if (action.type === 'BUGS_ADD'){
+                return [...currentState, action.payload];
+            }
+            if (action.type === 'BUGS_REPLACE'){
+                return currentState.map(bug => bug.id === action.payload.id ? action.payload : bug);
+            }
+            if (action.type === 'BUGS_REMOVE'){
+                return currentState.filter(bug => !action.payload.find(b => b.id === bug.id));
+            }
+            return currentState;
+        }
+        //TO BE FIXED
+        let currentBugId = 0;
+
+        const bugActionCreators = {
+            addNew(bugName){
+                const newBug = {
+                    id : ++currentBugId,
+                    name : bugName,
+                    isClosed : false,
+                    createdAt : new Date()
+                }
+                const action = { type : 'BUGS_ADD', payload : newBug };
+                return action;
+            },
+            toggle(bugToToggle){
+                const toggledBug = { ...bugToToggle, isClosed  : !bugToToggle.isClosed };
+                const action = { type : 'BUGS_REPLACE', payload : toggledBug};
+                return action;
+            },
+            remove(bugToRemove){
+                const action = { type : 'BUGS_REMOVE', payload : [ bugToRemove ] };
+                return action;
+            },
+            removeClosed(bugs /* TO BE FIXED */){
+                const bugsToRemove = bugs.filter(bug => bug.isClosed);
+                const action = { type : 'BUGS_REMOVE', payload : bugsToRemove };
+                return action;
+            }
+        }
+         const store = Redux.createStore(bugsReducer);
+
+         const Bugs = ({bugs, addNew, toggle, remove, removeClosed}) => {
+             const [newBugName, setNewBugName ] = React.useState('');
+
+             const bugItems = bugs.map(bug => (
+                  <li key={bug.id}>
+                     <span 
+                        className={ "bugname " + (bug.isClosed ? "closed" : "" )}
+                        onClick={() => toggle(bug)}
+                     >{bug.name}</span>                     
+                     <div className="datetime">{bug.createdAt.toString()}</div>
+                     <button onClick={() => remove(bug)}>Remove</button>
+                 </li>
+             ));
+             const closedCount = bugs.reduce((result, bug) => bug.isClosed ? result + 1 : result, 0 )
+             return(
+                 <div>
+                     <h1>Bug Tracker</h1>
+                     <hr />
+                     <section className="stats">
+                         <span className="closed">{closedCount}</span>
+                         <span> / </span>
+                         <span>{bugs.length}</span>
+                     </section>
+                     <section className="edit">
+                         <label htmlFor="">Bug Name :</label>
+                         <input type="text" onChange={ evt => setNewBugName(evt.target.value) }  />
+                         <button onClick={() => addNew(newBugName)}>Add New</button>
+                     </section>
+                     <section className="sort">
+                         <label htmlFor="">Order By :</label>
+                         <select name="" id="">
+                             <option value=""></option>
+                             <option value=""></option>
+                             <option value=""></option>
+                         </select>
+                         <label htmlFor="">Descending ? :</label>
+                         <input type="checkbox" name="" id="" />
+                     </section>
+                     <section className="list">
+                         <ol>
+                            {bugItems}
+                         </ol>
+                         <button onClick={() => removeClosed(bugs)}>Remove Closed</button>
+                     </section>
+                 </div>
+             )
+         }
+
+        const bugActionDispatchers = Redux.bindActionCreators(bugActionCreators, store.dispatch);
+
+        function renderApp(){
+             const bugs = store.getState();
+            ReactDOM.render(
+                <Bugs bugs={bugs} {...bugActionDispatchers}/>
+                , document.getElementById("root"))
+        }
+        renderApp();
+        store.subscribe(renderApp);
+     </script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+</html>

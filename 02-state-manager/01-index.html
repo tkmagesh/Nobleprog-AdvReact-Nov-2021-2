@@ -16,24 +16,45 @@
             return currentState;
         }
         const store = StateManager.createStore(spinnerReducer)
-        const inc_action = { type : 'INCREMENT' },
-            dec_action = { type : 'DECREMENT' };
-            
-        /* store.subscribe(() => console.log('current state = ', store.getState()))
-        store.dispatch(dec_action)
-        store.dispatch(inc_action) */
-        const Spinner = () => {
+        
+
+        /* store.subscribe(() => console.log('current state = ', store.getState())) */
+        
+        
+        const Spinner = ({store}) => {
+
+            const inc_action = { type: 'INCREMENT' },
+                dec_action = { type: 'DECREMENT' };
+
+            const onDecrementClick = () => {
+                store.dispatch(dec_action)
+            };
+
+            const onIncrementClick = () => {
+                store.dispatch(inc_action)
+            };
+
+            const spinnerValue = store.getState();
             return (
                 <div>
                     <h3>Spinner</h3>
                     <hr />
-                    <button>Decrement</button>
-                    <span> [ 0 ] </span>
-                    <button>Increment</button>
+                    <button onClick={onDecrementClick}>Decrement</button>
+                    <span> [ {spinnerValue} ] </span>
+                    <button onClick={onIncrementClick}>Increment</button>
                 </div>
             )
         }
-        ReactDOM.render(<Spinner/>, document.getElementById('root'))
+
+        function renderSpinner(){
+            ReactDOM.render(
+                <Spinner store={store}/>, 
+                document.getElementById('root')
+            )
+        }
+
+        renderSpinner();
+        store.subscribe(renderSpinner);
     </script>
 </head>
 <body>

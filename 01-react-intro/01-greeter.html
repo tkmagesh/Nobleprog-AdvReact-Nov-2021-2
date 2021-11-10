@@ -10,14 +10,15 @@
     <script src="babel.min.js"></script>
 
     <script type="text/babel">
-        const Greeter = () => {
+        const Greeter = (props) => {
+
             //state
             const [msg, setMsg] = React.useState('[Default message]');
             const [userName, setUserName] = React.useState('');
 
             //UI behavior
             const onBtnGreetClick = () => {
-                setMsg(`Hi ${userName}! Have a nice day!`);
+                setMsg(`Hi ${userName}! ${props.greetTemplate}`);
             };
 
             const onUserNameTxtChange = (evt) => {
@@ -36,7 +37,10 @@
             )
         }
         ReactDOM.render(
-            <Greeter />, 
+            <div>
+                <Greeter greetTemplate="Have a good day!" />
+                <Greeter greetTemplate="Have a nice day!" />
+            </div>, 
             document.getElementById('root')
         );
     </script>

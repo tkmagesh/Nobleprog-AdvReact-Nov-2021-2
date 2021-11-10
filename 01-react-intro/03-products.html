@@ -9,7 +9,7 @@
     <script src="react-dom.development.js"></script>
     <script src="babel.min.js"></script>
     <script type="text/babel">
-        const Products = () => {
+        const Products = (props) => {
             const [productNames, setProductNames] = React.useState([]);
             const [newProductName, setNewProductName] = React.useState('');
 
@@ -18,8 +18,10 @@
             };
 
             const onBtnAddProductClick = () => {
-                setProductNames([...productNames, newProductName]);
+                const updatedProductNames = [...productNames, newProductName];
+                setProductNames(updatedProductNames);
                 setNewProductName('');
+                props.listChanged(updatedProductNames)
             };
             const productItems = productNames.map((productName, index) => {
                 return <li key={index}>{productName}</li>;
@@ -39,13 +41,29 @@
             )
         }
 
-        ReactDOM.render(
-            <div>
+        const ProductsCount = (props) => {
+            return(
                 <div>
-                    Products Count : 0
+                    Products Count : {props.data}
                 </div>
-                <Products />
-            </div>,
+            )
+        }
+
+        const App = () => {
+            const [productNames, setProductNames] = React.useState([]);
+            const onListChange = (productNames) => {
+                setProductNames(productNames);
+            };
+            return (
+                <div>
+                    <ProductsCount data={productNames.length}/>
+                    <Products listChanged={onListChange}/>
+                </div>
+            )
+        }
+
+        ReactDOM.render(
+            <App/>,
             document.getElementById('root')
         )
     </script>

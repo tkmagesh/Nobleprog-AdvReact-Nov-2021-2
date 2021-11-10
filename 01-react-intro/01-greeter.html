@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeter</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+
+    <script type="text/babel">
+        const Greeter = () => {
+            //state
+            const [msg, setMsg] = React.useState('[Default message]');
+            const [userName, setUserName] = React.useState('');
+
+            //UI behavior
+            const onBtnGreetClick = () => {
+                setMsg(`Hi ${userName}! Have a nice day!`);
+            };
+
+            const onUserNameTxtChange = (evt) => {
+                setUserName(evt.target.value);
+            };
+
+            //presentation
+            return(
+                <div>
+                    <h3>Greeter</h3>
+                    <label>User Name : </label>
+                    <input type="text" onChange={onUserNameTxtChange}/>
+                    <button onClick={onBtnGreetClick}>Greet</button>
+                    <div>{msg}</div>
+                </div>
+            )
+        }
+        ReactDOM.render(
+            <Greeter />, 
+            document.getElementById('root')
+        );
+    </script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+</html>

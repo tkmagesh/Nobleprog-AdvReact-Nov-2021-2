@@ -28,3 +28,6 @@ React
     component = encapsulation of Presentation + UI Behavior + State
     Responsibility of a component is to synchronize the state changes in the UI
 
+react.js
+react-dom.js
+babel.js

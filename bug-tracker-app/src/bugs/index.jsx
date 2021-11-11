@@ -6,8 +6,7 @@ import BugList from './components/BugList'
 const Bugs = ({bugs, addNew, toggle, remove, removeClosed}) => {
     return(
         <div>
-            <h1>Bug Tracker</h1>
-            <hr />
+            <h2>Bugs</h2>
             <BugStats bugs={bugs} />
             <BugEdit addNew={addNew} />
             <BugSort/>

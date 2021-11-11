@@ -14,17 +14,22 @@ import Projects from './projects';
 
 import store from './store'
 
-
 const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
 const projectActionDispatchers = bindActionCreators(projectActionCreators, store.dispatch);
 
 function renderApp(){
     //const bugs = store.getState();
-    const projects = store.getState();
+    //const projects = store.getState();
+
+    const storeState = store.getState();
+    const bugs = storeState.bugsState;
+    const projects = storeState.projectsState;
+
     ReactDOM.render(
         <div>
+          <h1>Bug Tracker</h1>
           <Projects projects={projects} {...projectActionDispatchers}/>
-          {/* <Bugs bugs={bugs} {...bugActionDispatchers}/> */}
+          <Bugs bugs={bugs} {...bugActionDispatchers}/>
         </div>
         , document.getElementById("root")
     );

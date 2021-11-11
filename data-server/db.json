@@ -1,0 +1,32 @@
+{
+  "bugs": [
+    {
+      "id": 1,
+      "name": "Data integrity checks failed",
+      "isClosed": false,
+      "projectId": 2,
+      "createdAt": "2021-11-05T06:46:39.319Z"
+    },
+    {
+      "id": 2,
+      "name": "Bug - 2",
+      "isClosed": false,
+      "projectId": 1,
+      "createdAt": "2021-11-05T08:37:55.271Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Bug Tracker"
+    },
+    {
+      "id": 2,
+      "name": "Project Management"
+    },
+    {
+      "id": 3,
+      "name": "Time Tracker"
+    }
+  ]
+}

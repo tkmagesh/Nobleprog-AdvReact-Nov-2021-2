@@ -27,10 +27,10 @@ function loggerMiddleware(store){
 
 const loggerMiddleware = ({dispatch, getState}) => next => action => {
     console.group(action.type);
-    console.log('Before ', getState())
-    console.log('Action ', action)
+    console.log('%c Before ', 'color : blue', getState())
+    console.log('%c Action ', 'color : red', action)
     next(action);
-    console.log('After ', getState())
+    console.log('%c After ', 'color : green', getState())
     console.groupEnd();
 }
 

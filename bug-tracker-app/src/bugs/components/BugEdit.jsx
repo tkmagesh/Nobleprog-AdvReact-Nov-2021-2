@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const BugEdit = ({ addNew, projects }) => {
     const [newBugName, setNewBugName] = useState('');
-    const [projectId, setProjectId] = useState(0);
+    const [projectId, setProjectId] = useState(projects[0].id);
     return (
         <section className="edit">
             <label htmlFor="">Bug Name :</label>

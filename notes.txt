@@ -91,10 +91,33 @@ Implement the 'Projects' module in the application with the following use cases
 
     Create the required actions, reducers & components
 
+react-redux
+    to install
+        yarn add react-redux
+
+    to use
+        Provider
+
+        useDispatch() => gives the dispatch reference from the store
+        useSelector() => gives the state reference from the store
 
 
+Container / Smart components
+    Interact with the redux infrastructure for extracting state and dispatch
+    NOT responsible for presentation
+    It advisable to have fewer container components
+    ex., Projects, Bugs
 
+Presentational / Dumb components
+    Responsible for presentation
+    NOT responsible for interact with the redux infrastructure
+    Receive the state and the action dispatchers from the "Container/Smart" components
+    It is advisable to have more presentational components
+    ex., BugItem, BugList, BugEdit, BugSort, BugStats
 
+Assignment
+    Associate every newly created bug with an existing project (add 'projectId' attribute to the bug object)
+    Display the 'project name' for each bug
 
 
 

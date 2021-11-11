@@ -7,7 +7,10 @@ import { Provider } from 'react-redux';
 import Bugs from './bugs';
 import Projects from './projects';
 import store from './store'
-  
+
+import axios from 'axios';
+window['axios'] = axios;
+
 ReactDOM.render(
     <Provider store={store}>
       <div>

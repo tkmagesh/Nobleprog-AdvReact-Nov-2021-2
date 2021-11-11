@@ -122,12 +122,39 @@ Assignment
 Middleware
     To encapsulate any logic that has to be applied across many actions
 
+To run the json-server
+    from the folder that has the db.json file
+        npx json-server db.json -p 3030
 
 
+To install axios
+    yarn add axios
 
+Using Axios
+    //get all the bugs
+    axios.get('http://localhost:3030/bugs')
+        .then(response => response.data)
+        .then(bugs => console.table(bugs))
 
+    //get one bug
+    axios.get('http://localhost:3030/bugs/1')
+        .then(response => response.data)
+        .then(bug => console.log(bug))
 
+    //To add a new bug
+    var newBugData = { id : 0, name : 'Server communication failure', isClosed : false, createdAt : new Date(), projectId : 2 }
+    axios.post('http://localhost:3030/bugs', newBugData)
+        .then(response => response.data)
+        .then(newBug => console.log('new bug added ', newBug))
 
+    //To update an existing bug
+    var updatedBugData = { id : 3, name : 'Server communication failure because of network', isClosed : true, createdAt : new Date(), projectId : 2 }
+    axios.put('http://localhost:3030/bugs/3', updatedBugData)
+        .then(response => response.data)
+        .then(updatedBug => console.log('updated bug  ', updatedBug))
 
-
+    //To delete an existing bug
+    axios.delete('http://localhost:3030/bugs/3')
+        .then(response => response.data)
+        .then(deletedBug => console.log('deleted bug  ', deletedBug))
 

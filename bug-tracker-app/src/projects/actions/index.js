@@ -1,7 +1,25 @@
+import axios from 'axios';
+
 let currentProjectId = 5;
+
+function getLocalProjects(){
+    const initialState = [
+        {id : 1, title : '[L] Bug Tracker'},
+        {id : 2, title : '[L] Expense Manager'},
+        {id : 3, title : '[L] Time Tracker'},
+    ];
+    return initialState;
+}
+
 const projectActionCreators = {
     load(){
-        const action = { type : 'PROJECTS_LOAD' }
+
+        axios.get('http://localhost:3030/projects')
+            .then(response => response.data)
+            .then(projects => console.table(projects));
+
+        const projects = getLocalProjects()
+        const action = { type : 'PROJECTS_LOAD', payload : projects};
         return action;
     },
     addNew(projectTitle){

@@ -44,4 +44,16 @@ State
         Highly LIKELY that this data is needed in other parts of the application
         DONOT maintain this data in the component
 
-        
+node --version
+
+To instal "yarn" package manager
+    npm install yarn -g
+
+To create a react application
+    yarn create react-app <app-name>
+
+To run the application
+    cd <app-name>
+    yarn start
+
+

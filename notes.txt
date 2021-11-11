@@ -56,4 +56,47 @@ To run the application
     cd <app-name>
     yarn start
 
+Application folder structure
+For the bugs module
+    /src
+        /bugs
+            /actions
+                /addNew.js
+                /toggle.js
+                /remove.js
+                /removeClosed.js
+                /index.js
+            /reducers
+                /bugsReducer.js
+            /components
+                /BugItem.js
+                /BugList.js
+                /BugEdit.js
+                /BugSort.js
+                /BugStats.js
+            /index.js => Bugs Component
+        
+        /store
+            /index.js
+
+        /index.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

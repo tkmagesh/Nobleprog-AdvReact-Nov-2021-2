@@ -1,4 +1,10 @@
-const Projects = ({projects, load}) => {
+import { useSelector, useDispatch } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import projectActionCreators from "./actions";
+
+const Projects = () => {
+    const { load, addNew } = bindActionCreators(projectActionCreators, useDispatch());
+    const projects = useSelector(state => state.projectsState);
     return (
         <div className="projects">
         <h2>Projects</h2>

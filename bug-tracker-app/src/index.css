@@ -30,12 +30,12 @@ li{
 .datetime{
     font-style : italic;
 }
+
 .row {
   display: flex;
 }
 
 .projects {
-
   flex: 30%;
   margin : 5px;
 }

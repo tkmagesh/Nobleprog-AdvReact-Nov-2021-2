@@ -81,6 +81,9 @@ For the bugs module
 
         /index.js
 
+To install redux
+    yarn add redux
+
 
 
 

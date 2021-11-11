@@ -1,18 +1,17 @@
 import { useState } from 'react';
 
-const BugEdit = ({ addNew }) => {
+const BugEdit = ({ addNew, projects }) => {
     const [newBugName, setNewBugName] = useState('');
+    const [projectId, setProjectId] = useState(0);
     return (
         <section className="edit">
             <label htmlFor="">Bug Name :</label>
             <input type="text" onChange={evt => setNewBugName(evt.target.value)} />
             <label> Project : </label>
-            <select>
-                <option value="">Select Project</option>
-                <option value="1">Project 1</option>
-                <option value="2">Project 2</option>
+            <select onChange={evt => setProjectId(parseInt(evt.target.value))}>
+                { projects.map(project => <option key={project.id} value={project.id}>{project.title}</option>)}
             </select>
-            <button onClick={() => addNew(newBugName)}>Add New</button>
+            <button onClick={() => addNew(newBugName, projectId)}>Add New</button>
         </section>
     )
 }

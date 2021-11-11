@@ -13,13 +13,17 @@ const Bugs = () => {
     const { addNew, toggle, remove, removeClosed } = bugActionDispatchers;
 
     //extracting state from store
-    const bugs = useSelector(storeState => storeState.bugsState)
-    
+    /* 
+    const bugsState = useSelector(storeState => storeState.bugsState)
+    const projects = useSelector(storeState => storeState.projectsState); 
+    */
+    const { bugsState, projectsState : projects  } = useSelector(storeState => storeState);
+    const bugs = bugsState.map(bug => ({...bug, projectTitle : projects.find(project => project.id === bug.projectId).title}))
     return(
         <div>
             <h2>Bugs</h2>
             <BugStats bugs={bugs} />
-            <BugEdit addNew={addNew} />
+            <BugEdit addNew={addNew} projects={projects} />
             <BugSort/>
             <BugList {...{bugs, toggle, remove, removeClosed}} />
         </div>

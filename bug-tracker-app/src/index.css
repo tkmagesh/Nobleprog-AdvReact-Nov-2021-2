@@ -1,5 +1,5 @@
 body{
-    margin : 50px
+    margin : 20px
 }
 section{
     margin-bottom: 10px;
@@ -29,4 +29,17 @@ li{
 }
 .datetime{
     font-style : italic;
+}
+.row {
+  display: flex;
+}
+
+.projects {
+
+  flex: 30%;
+  margin : 5px;
+}
+.bugs{
+    margin : 5px;
+    flex: 70%;
 }

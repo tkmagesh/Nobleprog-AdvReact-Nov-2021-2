@@ -28,8 +28,15 @@ function renderApp(){
     ReactDOM.render(
         <div>
           <h1>Bug Tracker</h1>
-          <Projects projects={projects} {...projectActionDispatchers}/>
-          <Bugs bugs={bugs} {...bugActionDispatchers}/>
+          <hr/>
+          <div className="row">
+            <div className="projects">
+              <Projects projects={projects} {...projectActionDispatchers}/>
+            </div>
+            <div className="bugs">
+              <Bugs bugs={bugs} {...bugActionDispatchers}/>
+            </div>
+          </div>
         </div>
         , document.getElementById("root")
     );

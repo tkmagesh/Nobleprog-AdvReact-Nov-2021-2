@@ -85,7 +85,9 @@ To install redux
     yarn add redux
 
 
-
+Implement the 'Projects' module in the application with the following use cases
+    1. Add a new project
+    2. List the added projects
 
 
 

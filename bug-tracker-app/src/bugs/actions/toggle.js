@@ -1,6 +1,12 @@
+import bugApi from '../services/bugApi';
+
 function toggle(bugToToggle){
-    const toggledBug = { ...bugToToggle, isClosed  : !bugToToggle.isClosed };
-    const action = { type : 'BUGS_REPLACE', payload : toggledBug};
-    return action;
+    return function(dispatch){
+        const toggledBugData = { ...bugToToggle, isClosed  : !bugToToggle.isClosed };
+        bugApi.save(toggledBugData).then(toggledBug => {
+            const action = { type : 'BUGS_REPLACE', payload : toggledBug};
+            dispatch(action);
+        });
+    }
 }
 export default toggle;

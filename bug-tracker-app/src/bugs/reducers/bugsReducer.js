@@ -8,6 +8,9 @@ function bugsReducer(currentState = [], action){
     if (action.type === 'BUGS_REMOVE'){
         return currentState.filter(bug => !action.payload.find(b => b.id === bug.id));
     }
+    if (action.type === 'BUGS_LOAD'){
+        return action.payload;
+    }
     return currentState;
 }
 export default bugsReducer;

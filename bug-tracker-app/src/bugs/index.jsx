@@ -5,20 +5,19 @@ import BugEdit from './components/BugEdit'
 import BugSort from './components/BugSort'
 import BugList from './components/BugList'
 import bugActionCreators from './actions'
+import { useEffect } from 'react';
+
 
 const Bugs = () => {
     //creating action dispatchers
     const dispatch = useDispatch()
     const bugActionDispatchers = bindActionCreators(bugActionCreators, dispatch)
-    const { addNew, toggle, remove, removeClosed } = bugActionDispatchers;
-
-    //extracting state from store
-    /* 
-    const bugsState = useSelector(storeState => storeState.bugsState)
-    const projects = useSelector(storeState => storeState.projectsState); 
-    */
+    const { addNew, toggle, remove, removeClosed, load } = bugActionDispatchers;
     const { bugsState, projectsState : projects  } = useSelector(storeState => storeState);
     const bugs = bugsState.map(bug => ({...bug, projectTitle : projects.find(project => project.id === bug.projectId).title}))
+    useEffect(() => {
+        load();
+    },[])
     return(
         <div>
             <h2>Bugs</h2>

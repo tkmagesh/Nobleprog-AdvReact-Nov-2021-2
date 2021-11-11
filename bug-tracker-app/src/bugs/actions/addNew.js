@@ -8,7 +8,6 @@ function addNew(bugName, projectId){
         createdAt : new Date(),
         projectId : projectId
     }
-    console.log(newBug);
     const action = { type : 'BUGS_ADD', payload : newBug };
     return action;
 }

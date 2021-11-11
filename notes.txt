@@ -119,7 +119,8 @@ Assignment
     Associate every newly created bug with an existing project (add 'projectId' attribute to the bug object)
     Display the 'project name' for each bug
 
-
+Middleware
+    To encapsulate any logic that has to be applied across many actions
 
 
 

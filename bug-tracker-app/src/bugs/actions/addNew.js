@@ -1,3 +1,5 @@
+let currentBugId = 0;
+
 function addNew(bugName){
     const newBug = {
         id : ++currentBugId,

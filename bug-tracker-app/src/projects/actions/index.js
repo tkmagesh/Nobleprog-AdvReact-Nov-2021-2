@@ -12,15 +12,24 @@ function getLocalProjects(){
 }
 
 const projectActionCreators = {
+    //using the asyncMiddleware
+    /* load(){
+        return function(dispatch){
+            axios.get('http://localhost:3030/projects')
+                .then(response => response.data)
+                .then(projects => {
+                    const action = { type : 'PROJECTS_LOAD', payload : projects};
+                    dispatch(action);
+                });
+        }
+    }, */
     load(){
-
-        axios.get('http://localhost:3030/projects')
+        return axios.get('http://localhost:3030/projects')
             .then(response => response.data)
-            .then(projects => console.table(projects));
-
-        const projects = getLocalProjects()
-        const action = { type : 'PROJECTS_LOAD', payload : projects};
-        return action;
+            .then(projects => {
+                const action = { type : 'PROJECTS_LOAD', payload : projects};
+                return action;
+            });
     },
     addNew(projectTitle){
         const newProject = { id : ++currentProjectId, title : projectTitle};

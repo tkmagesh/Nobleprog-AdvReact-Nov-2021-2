@@ -34,5 +34,19 @@ const loggerMiddleware = ({dispatch, getState}) => next => action => {
     console.groupEnd();
 }
 
-const store = createStore(rootReducer, applyMiddleware(loggerMiddleware));
+const asyncMiddleware = ({dispatch, getState}) => next => action => {
+    if (typeof action === 'function'){
+        return action(dispatch);
+    }
+    return next(action);
+}
+
+const promiseMiddleware = ({dispatch, getState}) => next => action => {
+    if (action instanceof Promise){
+        action.then( actionObj => dispatch(actionObj));
+    } else {
+        return next(action);
+    }
+}
+const store = createStore(rootReducer, applyMiddleware(loggerMiddleware, asyncMiddleware, promiseMiddleware));
 export default store;

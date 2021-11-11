@@ -18,15 +18,15 @@
   "projects": [
     {
       "id": 1,
-      "name": "Bug Tracker"
+      "title": "Bug Tracker"
     },
     {
       "id": 2,
-      "name": "Project Management"
+      "title": "Project Management"
     },
     {
       "id": 3,
-      "name": "Time Tracker"
+      "title": "Time Tracker"
     }
   ]
 }
